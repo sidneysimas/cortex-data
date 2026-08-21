@@ -46,7 +46,7 @@
     "app": "应用",
     "data": "数据",
     "moreOptions": "更多选项",
-    "microsoftResearch": "微软研究院"
+    "microsoftResearch": "Cortex Binário"
   },
   "logs": {
     "title": "后端日志",
@@ -149,7 +149,7 @@
     "videoDemoAria": "视频演示：{{title}}",
     "dataHandling": "数据处理：",
     "dataHandlingText": "数据仅保存在浏览器中 • 本地安装在本机运行 Python；在线演示在服务端处理（不存储）• LLM 仅接收带提示词的小样本数据",
-    "researchPrototype": "微软研究院研究原型",
+    "researchPrototype": "Um produto Cortex Binário",
     "installViaPipAria": "通过 pip 本地安装（在新标签页打开）",
     "watchVideoAria": "在 YouTube 观看视频（在新标签页打开）",
     "viewGithubAria": "在 GitHub 查看（在新标签页打开）"

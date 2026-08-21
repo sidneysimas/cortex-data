@@ -1129,8 +1129,8 @@ const AppShell: FC = () => {
             }}>
                 <AppBar position="static">
                     <Toolbar ref={toolbarRef} variant="dense" sx={{ height: 40, minHeight: 36, position: 'relative', pl: '0px !important' }}>
-                        <Box sx={{ width: 40, minWidth: 40, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                            <Box component="img" sx={{ height: 20 }} alt="" src={dfLogo} />
+                        <Box sx={{ width: 46, minWidth: 46, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                            <Box component="img" sx={{ height: 30 }} alt="" src={dfLogo} />
                         </Box>
                         {isCompactToolbar ? (
                             <PageNavMenu isAboutPage={isAboutPage} />

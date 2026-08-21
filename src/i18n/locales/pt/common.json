@@ -46,7 +46,7 @@
     "app": "Aplicativo",
     "data": "Dados",
     "moreOptions": "Mais opções",
-    "microsoftResearch": "Microsoft Research"
+    "microsoftResearch": "Cortex Binário"
   },
   "logs": {
     "title": "Log do Backend",
@@ -149,7 +149,7 @@
     "videoDemoAria": "Demonstração em vídeo: {{title}}",
     "dataHandling": "Tratamento de dados:",
     "dataHandlingText": "Dados armazenados somente no navegador • A instalação local executa Python localmente; a demo online processa no servidor (sem armazenar) • O modelo (LLM) recebe pequenas amostras junto com os prompts",
-    "researchPrototype": "Protótipo de Pesquisa da Microsoft Research",
+    "researchPrototype": "Um produto Cortex Binário",
     "installViaPipAria": "Instalar Localmente via pip (abre em nova aba)",
     "watchVideoAria": "Assistir Vídeo no YouTube (abre em nova aba)",
     "viewGithubAria": "Ver no GitHub (abre em nova aba)"
