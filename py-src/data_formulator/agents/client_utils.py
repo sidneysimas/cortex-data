@@ -274,6 +274,16 @@ class Client(object):
                 self.model = model
             else:
                 self.model = f"ollama/{model}"
+        elif self.endpoint not in ("openai",):
+            # Custom / non-builtin providers (Groq, DeepSeek, etc). Some of
+            # these vendors publish model ids that themselves look like a
+            # "provider/model" pair (e.g. Groq's "openai/gpt-oss-120b").
+            # Without an explicit custom_llm_provider, LiteLLM's own model
+            # string parsing strips a leading segment it recognizes as a
+            # provider name (like "openai/") before it ever reaches the
+            # vendor's API, corrupting the model id. Passing the endpoint
+            # explicitly here keeps the model string intact.
+            self.params["custom_llm_provider"] = self.endpoint
 
     def _strip_image_blocks(self, content):
         """Remove image_url blocks from multimodal content arrays."""
