@@ -1,0 +1,116 @@
+{
+  "loader": {
+    "mysql": {
+      "user": "Usuário do MySQL",
+      "password": "deixe em branco se não houver senha",
+      "host": "endereço do servidor",
+      "port": "porta do servidor",
+      "database": "Nome do banco de dados (deixe vazio para navegar por todos)",
+      "authInstructions": "**Exemplo:** usuário: `root` · host: `localhost` · porta: `3306` · banco: `mydb`\n\n**Configuração local:** Certifique-se de que o MySQL está em execução — `brew services list` (macOS) ou `systemctl status mysql` (Linux). Deixe a senha em branco se nenhuma estiver definida.\n\n**Configuração remota:** Obtenha host, porta, usuário e senha com o administrador do banco de dados. Certifique-se de que o servidor permite conexões remotas e que seu IP está liberado.\n\n**Escopo:** Deixe *banco de dados* vazio para navegar por todos os bancos do servidor, ou preencha para ir direto às tabelas daquele banco.\n\n**Solução de problemas:** Teste com `mysql -u <usuario> -p -h <host> -P <porta> <banco>`"
+    },
+    "mssql": {
+      "server": "Endereço do host ou nome da instância do SQL Server",
+      "database": "Nome do banco de dados (deixe vazio para navegar por todos)",
+      "user": "Usuário (deixe vazio para autenticação Entra ID / Windows)",
+      "password": "Senha (deixe vazio para autenticação Entra ID / Windows)",
+      "port": "Porta do SQL Server (padrão: 1433)",
+      "encrypt": "Habilitar criptografia (yes/no)",
+      "trust_server_certificate": "Confiar no certificado do servidor (yes/no)",
+      "connection_timeout": "Tempo limite de conexão em segundos",
+      "authInstructions": "**Microsoft Entra ID (recomendado):** Execute `az login` uma vez no terminal e depois inicie o Data Formulator. Escolha *Microsoft Entra ID*, preencha apenas `server` e (opcionalmente) `database`, e deixe usuário/senha vazios — suas credenciais do Azure CLI serão usadas automaticamente. Managed Identity, VS Code e credenciais de ambiente também funcionam via `DefaultAzureCredential`.\n\n> Sua identidade Entra precisa ter acesso concedido ao banco, ex: um administrador executa `CREATE USER [voce@empresa.com] FROM EXTERNAL PROVIDER;` e concede os papéis necessários.\n\n**Exemplo (Entra ID):** server: `meuservidor.database.windows.net` · database: `mydb` (usuário/senha vazios)\n\n**Autenticação SQL Server:** Escolha *SQL Server authentication* e informe usuário e senha.\n\n**Exemplo (autenticação SQL):** server: `localhost` · database: `mydb` · user: `sa` · password: `MinhaS@nha` · port: `1433`\n\n**Autenticação Windows (somente Windows):** Escolha *Windows authentication* e deixe usuário/senha vazios.\n\n**Driver:** O driver do Microsoft SQL Server já vem com o Data Formulator; não é preciso instalar ODBC separadamente. Para Entra ID, instale o Azure CLI e execute `az login`.\n\n**Solução de problemas:** Confirme que está autenticado com `az account show`. Verifique se o serviço SQL Server está rodando e o TCP/IP habilitado. Teste a autenticação SQL com `sqlcmd -S <server> -d <database> -U <user> -P <password>`."
+    },
+    "postgresql": {
+      "user": "Usuário do PostgreSQL",
+      "password": "deixe em branco se não houver senha",
+      "host": "Host do PostgreSQL",
+      "port": "Porta do PostgreSQL",
+      "database": "Nome do banco de dados (deixe vazio para navegar por todos)",
+      "authInstructions": "**Exemplo:** usuário: `postgres` · host: `localhost` · porta: `5432` · banco: `mydb`\n\n**Configuração local:** Certifique-se de que o PostgreSQL está em execução — `brew services list` (macOS) ou `systemctl status postgresql` (Linux). Deixe a senha em branco se nenhuma estiver definida.\n\n**Configuração remota:** Obtenha host, porta, usuário e senha com o administrador do banco de dados. O usuário precisa ter permissão SELECT nas tabelas que deseja acessar.\n\n**Escopo:** Deixe *banco de dados* vazio para navegar por todos os bancos do servidor, ou preencha para ir direto aos schemas/tabelas daquele banco.\n\n**Solução de problemas:** Teste com `psql -U <usuario> -h <host> -p <porta> -d <banco>`"
+    },
+    "mongodb": {
+      "host": "endereço do servidor",
+      "port": "porta do servidor",
+      "username": "deixe em branco se não houver autenticação",
+      "password": "deixe em branco se não houver autenticação",
+      "database": "nome do banco de dados",
+      "collection": "deixe vazio para listar todas as coleções",
+      "authSource": "banco de autenticação (padrão: banco de destino)",
+      "authInstructions": "**Exemplo:** host: `localhost` · porta: `27017` · banco: `mydb` · coleção: `users`\n\n**Configuração local:** Certifique-se de que o MongoDB está em execução. Deixe usuário e senha em branco se a autenticação não estiver habilitada.\n\n**Configuração remota:** Obtenha host, porta, usuário e senha com o administrador do banco de dados.\n\n**Solução de problemas:** Teste com `mongosh --host <host> --port <porta>`"
+    },
+    "cosmosdb": {
+      "endpoint": "URL do endpoint da conta Cosmos DB",
+      "key": "chave da conta ou chave do emulador",
+      "database": "nome do banco de dados",
+      "container": "deixe vazio para listar todos os containers",
+      "authInstructions": "**Exemplo:** endpoint: `https://myaccount.documents.azure.com:443/` · banco: `mydb`\n\n**Configuração no Azure:** Encontre seu endpoint e chave no Portal do Azure em *Keys*, na sua conta Cosmos DB.\n\n**Emulador local:** Use o endpoint `https://localhost:8081` com a chave padrão conhecida do emulador.\n\n**Solução de problemas:** Certifique-se de que o firewall da conta permite seu IP, ou use uma conexão de uma rede permitida."
+    },
+    "bigquery": {
+      "project_id": "ID do Projeto no Google Cloud",
+      "dataset_id": "ID(s) do dataset - deixe vazio para todos, ou informe um ou vários separados por vírgula",
+      "credentials_path": "Caminho para o arquivo JSON da conta de serviço (opcional)",
+      "location": "Localização do BigQuery (padrão: US)",
+      "authInstructions": "**Exemplo:** project_id: `meu-projeto-gcp` · dataset_id: `analytics` · credentials_path: `/caminho/para/chave.json` · location: `US`\n\n**Opção 1 — Application Default Credentials (recomendado):**\nInstale o [Google Cloud SDK](https://cloud.google.com/sdk/docs/install) e execute `gcloud auth application-default login`. Deixe `credentials_path` vazio.\n\n**Opção 2 — Arquivo de chave da conta de serviço:**\nCrie uma conta de serviço no Google Cloud Console, baixe a chave JSON, e informe o caminho completo em `credentials_path`. Conceda os papéis **BigQuery Data Viewer** e **BigQuery Job User** à conta.\n\n**Opção 3 — Variável de ambiente:**\nDefina `GOOGLE_APPLICATION_CREDENTIALS` com o caminho do arquivo JSON da conta de serviço. Deixe `credentials_path` vazio."
+    },
+    "athena": {
+      "aws_profile": "Nome do perfil AWS em ~/.aws/credentials (se definido, chave de acesso e segredo não são necessários)",
+      "aws_access_key_id": "ID da chave de acesso AWS (não necessário se usar aws_profile)",
+      "aws_secret_access_key": "Chave de acesso secreta AWS (não necessária se usar aws_profile)",
+      "aws_session_token": "Token de sessão AWS (necessário para credenciais temporárias)",
+      "region_name": "Nome da região AWS",
+      "workgroup": "Nome do workgroup do Athena (o local de saída é obtido da configuração do workgroup)",
+      "output_location": "Local de saída no S3 para resultados de consultas (ex: s3://bucket/caminho/). Se vazio, usa a configuração do workgroup.",
+      "database": "Banco de dados/catálogo padrão para as consultas",
+      "query_timeout": "Tempo limite de execução da consulta em segundos (padrão: 300 = 5 minutos)",
+      "authInstructions": "**Exemplo (perfil):** aws_profile: `default` · region_name: `us-east-1` · workgroup: `primary` · database: `meu_banco`\n\n**Exemplo (chaves):** aws_access_key_id: `AKIA...` · aws_secret_access_key: `wJalr...` · region_name: `us-east-1`\n\n**Opção 1 — Perfil AWS (recomendado):**\nDefina `aws_profile` com um nome de perfil de `~/.aws/credentials`. Configure com `aws configure --profile <nome>`. Não precisa de chave de acesso nem segredo.\n\n**Opção 2 — Credenciais explícitas:**\nInforme `aws_access_key_id` e `aws_secret_access_key` diretamente. Adicione `aws_session_token` para credenciais temporárias.\n\n**Permissões IAM necessárias:** `athena:StartQueryExecution`, `athena:GetQueryExecution`, `athena:GetQueryResults`, `athena:GetWorkGroup`, `athena:ListDatabases`, `athena:ListTableMetadata`, além de permissões S3 e Glue nos buckets de dados/resultados."
+    },
+    "kusto": {
+      "kusto_cluster": "ex: https://mycluster.region.kusto.windows.net",
+      "kusto_database": "Nome do banco de dados (obrigatório)",
+      "client_id": "Somente para service principal",
+      "client_secret": "Somente para service principal",
+      "tenant_id": "Somente para service principal",
+      "authInstructions": "**Opção 1 — Entrar com a Microsoft (recomendado):** Entre com sua própria conta e use suas permissões existentes no Kusto. Esta opção aparece quando o servidor tem `KUSTO_OAUTH_CLIENT_ID` configurado.\n\n**Opção 2 — Identidade padrão do Azure:** Use seu login do Azure CLI (`az login`), Managed Identity, credenciais do VS Code, ou credenciais de ambiente.\n\n**Opção 3 — Service Principal:** Informe `client_id`, `client_secret` e `tenant_id` de um service principal com acesso ao cluster.\n\nToda identidade precisa já ter acesso de dados (data-plane) ao banco Kusto selecionado."
+    },
+    "databricks": {
+      "server_hostname": "ex: adb-1234567890.11.azuredatabricks.net",
+      "http_path": "Caminho HTTP do SQL warehouse, ex: /sql/1.0/warehouses/abc123",
+      "catalog": "Nome do Unity Catalog (deixe vazio para navegar por todos os catálogos)",
+      "schema": "Nome do schema (deixe vazio para navegar por todos os schemas do catálogo)",
+      "access_token": "Token de acesso pessoal do Databricks (dapi...)",
+      "authInstructions": "**Onde encontrar:** No seu workspace do Databricks, abra **SQL → SQL Warehouses** (menu lateral), clique no seu warehouse, e abra a aba **Connection details** — copie o **Server hostname** e o **HTTP path** de lá.\n\n**Token de acesso:** Clique no seu avatar (canto superior direito) → **Settings → Developer → Access tokens → Generate new token**. Começa com `dapi` e só é exibido uma vez.\n\n**Permissões:** O usuário do token precisa de `USE CATALOG` / `USE SCHEMA` e `SELECT` nos objetos do Unity Catalog que deseja ler.\n\n**Escopo:** Deixe *catalog* e *schema* vazios para navegar por tudo que você pode acessar, ou defina-os para ir direto a um catálogo/schema específico — ex: experimente o catálogo `samples` embutido → `nyctaxi` → `trips`.\n\n**Não tem conta?** O Databricks Free Edition é serverless, gratuito, e já vem com o catálogo `samples` — não precisa configurar cluster nem warehouse."
+    },
+    "superset": {
+      "url": "URL base do Superset (ex: https://bi.empresa.com)",
+      "username": "Usuário do Superset (opcional se usar SSO)",
+      "password": "Senha do Superset (opcional se usar SSO)",
+      "authInstructions": "**Exemplo:** url: `https://bi.empresa.com` · usuário: `admin` · senha: `***`\n\n**Configuração:** Informe a URL base da sua instância Superset e as credenciais de um usuário com pelo menos o papel **Gamma** (acesso de leitura aos datasets).\n\n**SSO:** Se o seu Superset usa SSO, use o fluxo de ponte SSO em vez de autenticação por senha (configure via `PLG_SUPERSET_SSO_LOGIN_URL`)."
+    },
+    "azure_blob": {
+      "account_name": "Nome da conta de armazenamento do Azure",
+      "container_name": "Nome do container blob do Azure",
+      "connection_string": "String de conexão do armazenamento do Azure (alternativa a account_name + credenciais)",
+      "credential_chain": "Lista ordenada de provedores de credenciais do Azure (cli;managed_identity;env)",
+      "account_key": "Chave da conta de armazenamento do Azure",
+      "sas_token": "Token SAS do Azure",
+      "endpoint": "Substituição do endpoint do Azure",
+      "authInstructions": "**Exemplo (connection string):** connection_string: `DefaultEndpointsProtocol=https;AccountName=...` · container_name: `mydata`\n\n**Exemplo (chave da conta):** account_name: `mystorageacct` · container_name: `mydata` · account_key: `abc123...`\n\n**Opção 1 — Connection String (mais simples):**\nObtenha no Portal do Azure → Storage Account → Access keys. Informe em `connection_string`; `account_name` pode ser omitido.\n\n**Opção 2 — Chave da conta:**\nNo Portal do Azure → Storage Account → Access keys. Use `account_name` + `account_key`.\n\n**Opção 3 — Token SAS (recomendado para acesso limitado):**\nGere no Portal do Azure → Storage Account → Shared access signature. Use `account_name` + `sas_token`. Pode ser limitado por tempo e permissões.\n\n**Opção 4 — Azure CLI / Managed Identity (mais seguro):**\nBasta informar `account_name` + `container_name`. Requer `az login` ou Managed Identity.\n\n**Formatos suportados:** CSV, Parquet, JSON, JSONL"
+    },
+    "s3": {
+      "aws_access_key_id": "ID da chave de acesso AWS",
+      "aws_secret_access_key": "Chave de acesso secreta AWS",
+      "aws_session_token": "Token de sessão AWS (necessário para credenciais temporárias)",
+      "region_name": "Nome da região AWS",
+      "bucket": "Nome do bucket S3",
+      "authInstructions": "**Exemplo:** aws_access_key_id: `AKIA...` · aws_secret_access_key: `wJalr...` · region_name: `us-east-1` · bucket: `meu-bucket-de-dados`\n\n**Como obter credenciais:** Console AWS → IAM → Users → Security credentials → Create access key → escolha \"Application running outside AWS\".\n\n**Permissões necessárias:** `s3:GetObject` e `s3:ListBucket` no seu bucket.\n\n**Formatos suportados:** CSV, Parquet, JSON, JSONL"
+    },
+    "local_folder": {
+      "root_dir": "Caminho absoluto do diretório local a navegar",
+      "recursive": "Incluir arquivos em subdiretórios",
+      "file_pattern": "Padrão glob para filtrar arquivos (ex: '*.csv')",
+      "authInstructions": "Aponte `root_dir` para um diretório local contendo arquivos de dados.\n\n**Formatos suportados:** CSV, TSV, Parquet, JSON, JSONL, Excel (.xlsx/.xls)\n\nClique em **Procurar** para abrir um seletor de pastas, ou cole o caminho de um diretório."
+    },
+    "_common": {
+      "table_filter": "Filtrar tabela por palavras-chave (ex: 'vendas')"
+    }
+  }
+}

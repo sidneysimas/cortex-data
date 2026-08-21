@@ -1,0 +1,38 @@
+{
+  "errors": {
+    "authRequired": "Autenticação necessária",
+    "authExpired": "Sessão expirada — faça login novamente",
+    "accessDenied": "Acesso negado",
+
+    "invalidRequest": "Requisição inválida",
+    "tableNotFound": "Tabela não encontrada",
+    "fileParseError": "Falha ao processar o arquivo enviado",
+    "fileTooLarge": "Arquivo muito grande",
+    "validationError": "Erro de validação",
+
+    "llmAuthFailed": "Falha na autenticação — verifique sua chave de API",
+    "llmRateLimit": "Limite de requisições excedido — aguarde e tente novamente",
+    "llmContextTooLong": "Entrada muito longa — reduza o tamanho dos dados ou do prompt",
+    "llmModelNotFound": "Modelo não encontrado — verifique o nome do modelo",
+    "llmTimeout": "A requisição expirou — verifique a conectividade e tente novamente",
+    "llmServiceError": "O serviço do modelo retornou um erro — tente novamente mais tarde",
+    "llmContentFiltered": "A requisição foi bloqueada pelo filtro de segurança de conteúdo",
+    "llmUnknownError": "Falha na requisição ao modelo",
+
+    "connectorAuthFailed": "Falha na autenticação da fonte de dados",
+    "dbConnectionFailed": "Falha na conexão com a fonte de dados",
+    "dbQueryError": "Erro na consulta ao banco de dados",
+    "dataLoadError": "Falha ao carregar os dados",
+    "connectorError": "Erro no conector de dados",
+
+    "codeExecutionError": "Ocorreu um erro durante a execução do código",
+    "agentError": "O agente encontrou um erro",
+
+    "catalogSyncTimeout": "A sincronização do catálogo expirou — tente novamente",
+    "catalogNotFound": "Conector não encontrado ou não conectado",
+
+    "internalError": "Ocorreu um erro inesperado",
+    "serviceUnavailable": "Serviço temporariamente indisponível",
+    "storageFull": "O armazenamento do workspace está cheio. Libere espaço em disco e tente novamente."
+  }
+}
