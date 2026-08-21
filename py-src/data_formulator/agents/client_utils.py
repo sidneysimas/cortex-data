@@ -419,12 +419,50 @@ class Client(object):
                            **params, **(extra or {}))
         if tools is not None:
             call_kwargs["tools"] = tools
+        if effective_stream:
+            # Ask the provider to emit a final usage-only chunk so streamed
+            # calls can be token-metered too, not just non-streaming ones.
+            call_kwargs["stream_options"] = {"include_usage": True}
         resp = litellm.completion(**call_kwargs)
         if is_ollama and tools:
             resp = _salvage_tool_calls_from_content(resp, tools)
         if is_ollama and stream:
+            self._record_usage(getattr(resp, "usage", None))
             return _synthesize_stream(resp)
+        if effective_stream:
+            return self._meter_stream(resp)
+        self._record_usage(getattr(resp, "usage", None))
         return resp
+
+    def _record_usage(self, usage) -> None:
+        """Log token usage for this call, scoped to the current request's
+        identity. Best-effort: tracking must never break the LLM call it
+        rides on, so every failure mode here is swallowed (and logged by
+        usage_tracker itself)."""
+        if usage is None:
+            return
+        try:
+            from data_formulator.auth.identity import get_identity_id
+            from data_formulator import usage_tracker
+            usage_tracker.record_usage(
+                identity_id=get_identity_id(),
+                endpoint=self.endpoint,
+                model=self.model,
+                prompt_tokens=getattr(usage, "prompt_tokens", 0),
+                completion_tokens=getattr(usage, "completion_tokens", 0),
+            )
+        except Exception:
+            pass  # No resolvable identity (e.g. outside a request context) — skip.
+
+    def _meter_stream(self, stream):
+        """Pass a native LiteLLM stream through unchanged, recording usage
+        from the final chunk (present because of ``stream_options`` above)
+        as a side effect."""
+        for chunk in stream:
+            usage = getattr(chunk, "usage", None)
+            if usage is not None:
+                self._record_usage(usage)
+            yield chunk
 
     def get_completion(self, messages, stream=False, reasoning_effort="low",
                        **kwargs):

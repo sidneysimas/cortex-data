@@ -316,6 +316,10 @@ def _register_blueprints():
     from data_formulator.routes.knowledge import knowledge_bp
     app.register_blueprint(knowledge_bp)
 
+    # Register per-identity LLM usage/cost reporting API
+    from data_formulator.routes.usage import usage_bp
+    app.register_blueprint(usage_bp)
+
     # Auto-register all installed data loaders as DataConnector instances.
     # We always run this so the connectors blueprint and the built-in
     # 'sample_datasets' connector are available; the function itself
