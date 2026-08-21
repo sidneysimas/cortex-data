@@ -113,3 +113,8 @@ dev-dependencies = [
 name = "microsoft-package-feed"
 url = "https://packagefeedproxy.microsoft.io/pypi/simple"
 default = true
+
+[dependency-groups]
+dev = [
+    "gunicorn>=26.0.0",
+]
