@@ -396,6 +396,19 @@ class Client(object):
         ``_synthesize_stream``. All other providers stream natively."""
         is_ollama = self.endpoint == "ollama"
         effective_stream = stream and not is_ollama
+        if self.endpoint == "groq":
+            # Groq's chat-completions endpoint validates the assistant message
+            # schema strictly and rejects the `reasoning_content` field this
+            # codebase attaches to assistant turns (LiteLLM's cross-provider
+            # convention, see agent_config.py) with a 400: "'messages.N' :
+            # property 'reasoning_content' is unsupported". Other providers
+            # (DeepSeek, OpenRouter, ...) accept it back fine, so this is
+            # scoped to Groq rather than stripped everywhere.
+            messages = [
+                {k: v for k, v in m.items() if k != "reasoning_content"}
+                if isinstance(m, dict) else m
+                for m in messages
+            ]
         call_kwargs = dict(model=self.model, messages=messages,
                            drop_params=True, stream=effective_stream,
                            # We never use litellm's built-in MCP gateway. Setting this
