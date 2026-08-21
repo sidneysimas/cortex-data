@@ -83,7 +83,7 @@ import { MessageSnackbar } from '../views/MessageSnackbar';
 import { ChartRenderService } from '../views/ChartRenderService';
 import { DictTable } from '../components/ComponentType';
 import { AppDispatch } from './store';
-import dfLogo from '../assets/df-logo.svg';
+import dfLogo from '../assets/df-logo.png';
 import { AnvilLoader } from '../components/AnvilLoader';
 import { ModelSelectionButton } from '../views/ModelSelectionDialog';
 import { LogViewerDialog } from '../views/LogViewerDialog';
@@ -186,7 +186,7 @@ declare module '@mui/material/styles' {
     }
 }
 
-export const toolName = "Data Formulator"
+export const toolName = "Cortex Data"
 
 const LANGUAGE_LABELS: Record<string, string> = {
     en: 'EN',

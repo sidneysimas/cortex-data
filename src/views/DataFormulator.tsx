@@ -54,7 +54,7 @@ import {
 import { iconVar, textVar } from '../app/layout';
 import { useContainerSize, useLayout } from '../app/LayoutProvider';
 
-import dfLogo from '../assets/df-logo.svg';
+import dfLogo from '../assets/df-logo.png';
 import exampleImageTable from "../assets/example-image-table.png";
 import { ModelSelectionButton } from './ModelSelectionDialog';
 import { UnifiedDataUploadDialog, UploadTabType, DataLoadMenu, ConnectorInstance } from './UnifiedDataUploadDialog';
@@ -439,7 +439,7 @@ export const DataFormulatorFC = ({ }) => {
         
         // Preload imported images (public images are preloaded in index.html)
         const imagesToPreload = [
-            { src: dfLogo, type: 'image/svg+xml' },
+            { src: dfLogo, type: 'image/png' },
             { src: exampleImageTable, type: 'image/png' },
         ];
         
@@ -1183,7 +1183,7 @@ export const DataFormulatorFC = ({ }) => {
                         zIndex: 1000,
                     }}>
                         <Box sx={{margin:'auto', pb: '5%', display: "flex", flexDirection: "column", textAlign: "center"}}>
-                            <Box component="img" sx={{  width: 196, margin: "auto" }} alt="Data Formulator logo" src={dfLogo} fetchPriority="high" />
+                            <Box component="img" sx={{  width: 196, margin: "auto" }} alt="Cortex Data logo" src={dfLogo} fetchPriority="high" />
                             <Typography variant="h3" sx={{marginTop: "20px", fontWeight: 200, letterSpacing: '0.05em'}}>
                                 {toolName}
                             </Typography>
