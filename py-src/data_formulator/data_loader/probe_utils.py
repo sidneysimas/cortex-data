@@ -92,7 +92,7 @@ class SqlDialect:
     name: str = "ansi"
     open_quote: str = '"'
     close_quote: str = '"'
-    limit_style: str = "suffix"  # "suffix" | "top"
+    limit_style: str = "suffix"  # "suffix" | "top" | "fetch"
     ilike: str = "native"        # "native" | "lower_like"
 
 
@@ -105,6 +105,13 @@ MSSQL = SqlDialect(
     name="mssql", open_quote="[", close_quote="]",
     limit_style="top", ilike="lower_like",
 )
+# Oracle has no LIMIT/TOP — 12c+ uses the ANSI SQL:2008 row-limiting clause
+# "FETCH FIRST N ROWS ONLY", which (like LIMIT) goes after ORDER BY, so it
+# reuses the "suffix" position but needs its own keyword. Identifiers are
+# double-quoted like ANSI, but unquoted names live in Oracle's catalog as
+# UPPERCASE, so callers building raw (non-quoted) identifiers should
+# uppercase them — quote_ident() itself is case-preserving either way.
+ORACLE = SqlDialect(name="oracle", limit_style="fetch", ilike="lower_like")
 BIGQUERY = SqlDialect(
     name="bigquery", open_quote="`", close_quote="`", ilike="lower_like",
 )
@@ -295,7 +302,9 @@ def compile_probe_sql(
     if order_parts:
         sql += " ORDER BY " + ", ".join(order_parts)
 
-    if dialect.limit_style != "top":
+    if dialect.limit_style == "fetch":
+        sql += f" FETCH FIRST {int(out_limit)} ROWS ONLY"
+    elif dialect.limit_style != "top":
         sql += f" LIMIT {int(out_limit)}"
     return sql
 

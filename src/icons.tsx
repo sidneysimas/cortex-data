@@ -84,6 +84,7 @@ const CONNECTOR_ICON_MAP: Record<string, React.FC<SvgIconProps>> = {
     mysql: RelationalDBIcon,
     postgresql: RelationalDBIcon,
     mssql: RelationalDBIcon,
+    oracle: RelationalDBIcon,
     // Document stores
     mongodb: DocumentStoreIcon,
     cosmosdb: DocumentStoreIcon,
@@ -118,6 +119,7 @@ const CONNECTOR_CATEGORY_ORDER: Record<string, number> = {
     mysql: 0, MySQLDataLoader: 0,
     mssql: 0, MSSQLDataLoader: 0,
     postgresql: 0, PostgreSQLDataLoader: 0,
+    oracle: 0, OracleDataLoader: 0,
     // Document Store
     mongodb: 1, MongoDBDataLoader: 1,
     cosmosdb: 1, CosmosDBDataLoader: 1,

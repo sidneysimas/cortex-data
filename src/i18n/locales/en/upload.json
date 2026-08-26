@@ -130,6 +130,7 @@
       "sample_datasets": "Try it out with sample data",
       "mysql": "Query MySQL tables",
       "postgresql": "Query Postgres tables",
+      "oracle": "Query Oracle Database tables",
       "mssql": "Query SQL Server tables",
       "cosmosdb": "Query Cosmos DB containers",
       "mongodb": "Query MongoDB collections",

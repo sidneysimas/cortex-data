@@ -8,6 +8,15 @@
       "database": "数据库名称（留空可浏览所有数据库）",
       "authInstructions": "**示例：** user: `root` · host: `localhost` · port: `3306` · database: `mydb`\n\n**本地环境：** 确保 MySQL 正在运行 — `brew services list`（macOS）或 `systemctl status mysql`（Linux）。如未设密码，密码留空即可。\n\n**远程环境：** 向数据库管理员获取主机、端口、用户名和密码。确保服务器允许远程连接且您的 IP 已加入白名单。\n\n**范围：** *database* 留空可浏览服务器上所有数据库；填入则直接进入该数据库的表列表。\n\n**排查：** 用 `mysql -u <user> -p -h <host> -P <port> <database>` 测试连接"
     },
+    "oracle": {
+      "user": "Oracle 用户名",
+      "password": "Oracle 密码",
+      "host": "Oracle 主机",
+      "port": "Oracle 监听端口（默认：1521）",
+      "service_name": "Oracle 服务名（例如 ORCLPDB1，或您的 TNS 服务别名）",
+      "schema": "要浏览的 schema/owner（留空可浏览您自己的 schema）",
+      "authInstructions": "**示例：** user: `system` · host: `localhost` · port: `1521` · service_name: `ORCLPDB1`\n\n**凭据：** 使用对所需表具有 `SELECT` 权限的 Oracle 账户。向 DBA 获取主机、端口、服务名、用户名和密码 — Oracle 几乎总是需要密码。\n\n**Service name 与 SID：** 现代 Oracle（12c 及以上，包括 Autonomous Database 和 Oracle 26ai）通过 *service name* 而非旧版 *SID* 寻址。如不确定，请查看 `tnsnames.ora` 文件中的 `SERVICE_NAME=` 条目。\n\n**范围：** *schema* 留空可浏览您自己的 schema 以及明确授予您的对象，或输入 schema 名称以浏览特定 owner 的表。\n\n**无需客户端安装：** 使用 `oracledb` 驱动的 thin 模式 — 无需安装 Oracle Instant Client。\n\n**排查：** 用 `sqlplus <user>/<password>@<host>:<port>/<service_name>` 测试连接"
+    },
     "mssql": {
       "server": "SQL Server 主机地址或实例名",
       "database": "数据库名称（留空可浏览所有数据库）",

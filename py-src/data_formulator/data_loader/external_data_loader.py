@@ -306,7 +306,7 @@ def build_source_filter_where_clause_inline(
         elif op == "BETWEEN":
             if isinstance(val, (list, tuple)) and len(val) == 2:
                 parts.append(f"{qcol} BETWEEN {_lit(val[0])} AND {_lit(val[1])}")
-        elif op == "ILIKE" and dialect.lower() == "mysql":
+        elif op == "ILIKE" and dialect.lower() in ("mysql", "oracle"):
             parts.append(f"LOWER({qcol}) LIKE LOWER({_contains_lit(val)})")
         elif op == "ILIKE":
             parts.append(f"{qcol} ILIKE {_contains_lit(val)}")

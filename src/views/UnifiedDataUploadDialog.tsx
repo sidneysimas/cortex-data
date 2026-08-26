@@ -501,6 +501,7 @@ const CONNECTOR_TYPE_KEY_MAP: Record<string, string> = {
     SampleDatasetsLoader: 'sample_datasets',
     MySQLDataLoader: 'mysql',
     PostgreSQLDataLoader: 'postgresql',
+    OracleDataLoader: 'oracle',
     MSSQLDataLoader: 'mssql',
     CosmosDBDataLoader: 'cosmosdb',
     MongoDBDataLoader: 'mongodb',

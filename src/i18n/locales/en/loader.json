@@ -8,6 +8,15 @@
       "database": "Database name (leave empty to browse all databases)",
       "authInstructions": "**Example:** user: `root` · host: `localhost` · port: `3306` · database: `mydb`\n\n**Local setup:** Ensure MySQL is running — `brew services list` (macOS) or `systemctl status mysql` (Linux). Leave password blank if none is set.\n\n**Remote setup:** Get host, port, username, and password from your database administrator. Ensure the server allows remote connections and your IP is whitelisted.\n\n**Scope:** Leave *database* empty to browse all databases on the server, or fill it in to go straight to tables in that database.\n\n**Troubleshooting:** Test with `mysql -u <user> -p -h <host> -P <port> <database>`"
     },
+    "oracle": {
+      "user": "Oracle username",
+      "password": "Oracle password",
+      "host": "Oracle host",
+      "port": "Oracle listener port (default: 1521)",
+      "service_name": "Oracle service name (e.g. ORCLPDB1, or your TNS service alias)",
+      "schema": "Schema/owner to browse (leave empty to browse your own schema)",
+      "authInstructions": "**Example:** user: `system` · host: `localhost` · port: `1521` · service_name: `ORCLPDB1`\n\n**Credentials:** Use an Oracle account with `SELECT` access to the tables you need. Ask your DBA for host, port, service name, username, and password — Oracle almost always requires a password.\n\n**Service name vs SID:** Modern Oracle (12c+, including Autonomous Database and Oracle 26ai) is addressed by *service name*, not the older *SID*. Check your `tnsnames.ora` file for the `SERVICE_NAME=` entry if unsure.\n\n**Scope:** Leave *schema* empty to browse your own schema plus anything explicitly granted to you, or enter a schema name to browse a specific owner's tables.\n\n**No client install required:** Uses the `oracledb` driver in thin mode — no Oracle Instant Client needed.\n\n**Troubleshooting:** Test with `sqlplus <user>/<password>@<host>:<port>/<service_name>`"
+    },
     "mssql": {
       "server": "SQL Server host address or instance name",
       "database": "Database name (leave empty to browse all databases)",

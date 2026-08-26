@@ -130,6 +130,7 @@
       "sample_datasets": "使用示例数据快速体验",
       "mysql": "查询 MySQL 表",
       "postgresql": "查询 Postgres 表",
+      "oracle": "查询 Oracle Database 表",
       "mssql": "查询 SQL Server 表",
       "cosmosdb": "查询 Cosmos DB 容器",
       "mongodb": "查询 MongoDB 集合",

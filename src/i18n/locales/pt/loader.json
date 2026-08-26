@@ -8,6 +8,15 @@
       "database": "Nome do banco de dados (deixe vazio para navegar por todos)",
       "authInstructions": "**Exemplo:** usuário: `root` · host: `localhost` · porta: `3306` · banco: `mydb`\n\n**Configuração local:** Certifique-se de que o MySQL está em execução — `brew services list` (macOS) ou `systemctl status mysql` (Linux). Deixe a senha em branco se nenhuma estiver definida.\n\n**Configuração remota:** Obtenha host, porta, usuário e senha com o administrador do banco de dados. Certifique-se de que o servidor permite conexões remotas e que seu IP está liberado.\n\n**Escopo:** Deixe *banco de dados* vazio para navegar por todos os bancos do servidor, ou preencha para ir direto às tabelas daquele banco.\n\n**Solução de problemas:** Teste com `mysql -u <usuario> -p -h <host> -P <porta> <banco>`"
     },
+    "oracle": {
+      "user": "Usuário do Oracle",
+      "password": "Senha do Oracle",
+      "host": "Host do Oracle",
+      "port": "Porta do listener Oracle (padrão: 1521)",
+      "service_name": "Nome do serviço Oracle (ex: ORCLPDB1, ou seu alias TNS)",
+      "schema": "Schema/owner a navegar (deixe vazio para navegar pelo seu próprio schema)",
+      "authInstructions": "**Exemplo:** usuário: `system` · host: `localhost` · porta: `1521` · service_name: `ORCLPDB1`\n\n**Credenciais:** Use uma conta Oracle com permissão `SELECT` nas tabelas que precisa. Peça ao DBA o host, porta, nome do serviço, usuário e senha — o Oracle quase sempre exige senha.\n\n**Service name vs SID:** O Oracle moderno (12c+, incluindo Autonomous Database e Oracle 26ai) é endereçado por *service name*, não pelo antigo *SID*. Verifique seu arquivo `tnsnames.ora` pela entrada `SERVICE_NAME=` se tiver dúvida.\n\n**Escopo:** Deixe *schema* vazio para navegar pelo seu próprio schema mais o que foi concedido explicitamente a você, ou informe um schema para navegar as tabelas de um owner específico.\n\n**Sem instalação de cliente:** Usa o driver `oracledb` em modo thin — não precisa instalar o Oracle Instant Client.\n\n**Solução de problemas:** Teste com `sqlplus <usuario>/<senha>@<host>:<porta>/<service_name>`"
+    },
     "mssql": {
       "server": "Endereço do host ou nome da instância do SQL Server",
       "database": "Nome do banco de dados (deixe vazio para navegar por todos)",

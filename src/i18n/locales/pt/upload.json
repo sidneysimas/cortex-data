@@ -130,6 +130,7 @@
       "sample_datasets": "Experimente com dados de exemplo",
       "mysql": "Consultar tabelas MySQL",
       "postgresql": "Consultar tabelas Postgres",
+      "oracle": "Consultar tabelas Oracle Database",
       "mssql": "Consultar tabelas SQL Server",
       "cosmosdb": "Consultar containers Cosmos DB",
       "mongodb": "Consultar coleções MongoDB",

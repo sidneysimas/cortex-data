@@ -64,6 +64,7 @@ _LOADER_SPECS: list[tuple[str, str, str, str]] = [
     ("clickhouse", "data_formulator.data_loader.clickhouse_data_loader", "ClickHouseDataLoader", "clickhouse-connect"),
     ("mssql",      "data_formulator.data_loader.mssql_data_loader",      "MSSQLDataLoader",      "mssql-python"),
     ("postgresql", "data_formulator.data_loader.postgresql_data_loader",  "PostgreSQLDataLoader", "psycopg2-binary"),
+    ("oracle",     "data_formulator.data_loader.oracle_data_loader",      "OracleDataLoader",     "oracledb"),
     ("kusto",      "data_formulator.data_loader.kusto_data_loader",      "KustoDataLoader",      "azure-kusto-data"),
     ("databricks", "data_formulator.data_loader.databricks_data_loader", "DatabricksDataLoader", "databricks-sql-connector"),
     ("s3",         "data_formulator.data_loader.s3_data_loader",         "S3DataLoader",         "boto3"),
@@ -110,7 +111,7 @@ _BUILTIN_CATALOG_POLICIES: dict[str, CatalogCachePolicy] = {
             automatic_refresh="while_connected",
             automatic_refresh_kind="full",
         )
-        for key in ("mysql", "postgresql", "mssql", "clickhouse")
+        for key in ("mysql", "postgresql", "mssql", "clickhouse", "oracle")
     },
     **{
         key: CatalogCachePolicy(
