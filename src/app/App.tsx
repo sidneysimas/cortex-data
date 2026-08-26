@@ -15,6 +15,7 @@ import {
 import { getBrowserId, generateUUID } from './identity';
 import type { AuthInfo } from './oidcConfig';
 import { OidcCallback } from './OidcCallback';
+import { SimpleModeView } from '../views/SimpleModeView';
 import { AuthButton } from './AuthButton';
 import { IdentityMigrationDialog } from './IdentityMigrationDialog';
 
@@ -1685,6 +1686,12 @@ export const AppFC: FC<AppFCProps> = function AppFC(appProps) {
         {
             path: "/auth/callback",
             element: <OidcCallback />,
+        },
+        {
+            // Deliberately outside <AppShell/> — no toolbar, sidebar, or chart
+            // canvas around it. See SimpleModeView.tsx for why.
+            path: "/simples",
+            element: <SimpleModeView />,
         },
         {
             path: "/",

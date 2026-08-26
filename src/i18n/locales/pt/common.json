@@ -1018,5 +1018,11 @@
     "threadExpand": "Expandir thread",
     "threadCollapse": "Recolher thread",
     "replayPrompt": "Reproduza o seguinte fluxo de análise nos dados atualmente carregados. Siga as etapas em ordem, adaptando as referências de colunas para as colunas disponíveis no conjunto de dados atual. Não há problema se o resultado não for idêntico — reproduza a mesma análise geral.\n\nAntes de fazer grandes suposições, verifique se os dados atuais realmente conseguem sustentar o fluxo de trabalho. Se houver uma discrepância importante — ex: um campo ou medida necessária está ausente, a granularidade ou formato é muito diferente, ou uma etapa não tem equivalente sensato nestes dados — pare e me peça para confirmar como proceder (ou explique brevemente a divergência e sua adaptação proposta) em vez de adivinhar. Diferenças menores (colunas renomeadas, colunas extras) podem ser adaptadas silenciosamente.\n\n{{content}}"
+  },
+  "simpleMode": {
+    "title": "Pergunte sobre seus dados",
+    "noData": "Nenhum dado carregado ainda",
+    "noDataHint": "Peça para quem configurou isso carregar os dados primeiro — depois volte aqui e é só perguntar.",
+    "backToFullApp": "Voltar para o aplicativo completo"
   }
 }
