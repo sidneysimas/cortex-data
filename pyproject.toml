@@ -10,6 +10,7 @@ requires-python = ">=3.11"
 authors = [
   {name = "Chenglong Wang", email = "chenglong.wang@microsoft.com"},
   {name = "Dan Marshall", email = "danmar@microsoft.com"},
+  {name = "Sidney Simas", email = "sidney@analysisti.com.br"},
 ]
 readme = "README.md"
 license = "MIT"
