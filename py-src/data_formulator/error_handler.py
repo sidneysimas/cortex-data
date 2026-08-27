@@ -54,9 +54,18 @@ def _safe_unexpected_detail(exc: Exception, request_id: str) -> str:
 
 _LLM_CODE_PATTERNS: list[tuple[str, str, bool]] = [
     # (regex, ErrorCode, retryable?)
-    (r"401|unauthorized|invalid.{0,15}api.?key|invalid.{0,15}key|auth\w*.{0,10}fail",
+    #
+    # Bare status-code numbers MUST use \b...\b. Provider error bodies are
+    # often a full JSON blob (quota values, retry-delay floats like
+    # "46.444401129s", request ids) and a bare "401" or "429" matches as a
+    # substring of an unrelated number in there. Seen in production: a real
+    # 429 rate-limit body containing "...129s" was misclassified as
+    # LLM_AUTH_FAILED ("please check your API key") because "401" matched
+    # inside "44401129s" — since this pattern is checked first, a plain
+    # quota error told the user their key was bad.
+    (r"\b401\b|unauthorized|invalid.{0,15}api.?key|invalid.{0,15}key|auth\w*.{0,10}fail",
      ErrorCode.LLM_AUTH_FAILED, False),
-    (r"429|rate.?limit|too many requests|quota",
+    (r"\b429\b|rate.?limit|too many requests|quota",
      ErrorCode.LLM_RATE_LIMIT, True),
     (r"context.{0,10}length|too many tokens|max.{0,10}tokens|token limit|maximum context",
      ErrorCode.LLM_CONTEXT_TOO_LONG, False),
@@ -68,7 +77,7 @@ _LLM_CODE_PATTERNS: list[tuple[str, str, bool]] = [
      ErrorCode.LLM_SERVICE_ERROR, True),
     (r"content.?filter|content.?policy|responsible.?ai|safety|flagged",
      ErrorCode.LLM_CONTENT_FILTERED, False),
-    (r"403|forbidden|access.?denied|not.?allowed|insufficient.{0,10}permission",
+    (r"\b403\b|forbidden|access.?denied|not.?allowed|insufficient.{0,10}permission",
      ErrorCode.ACCESS_DENIED, False),
 ]
 
