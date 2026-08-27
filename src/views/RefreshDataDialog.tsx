@@ -378,7 +378,7 @@ export const RefreshDataDialog: React.FC<RefreshDataDialogProps> = ({
                                 mb: 1.5,
                                 p: 1,
                                 backgroundColor: alpha(theme.palette.error.main, 0.08),
-                                borderLeft: `3px solid ${theme.palette.error.main}`,
+                                border: `1px solid ${alpha(theme.palette.error.main, 0.4)}`,
                                 borderRadius: '4px',
                             }}
                         >
