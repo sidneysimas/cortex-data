@@ -149,7 +149,7 @@
     "videoDemoAria": "视频演示：{{title}}",
     "dataHandling": "数据处理：",
     "dataHandlingText": "数据仅保存在浏览器中 • 本地安装在本机运行 Python；在线演示在服务端处理（不存储）• LLM 仅接收带提示词的小样本数据",
-    "researchPrototype": "Um produto Cortex Binário",
+    "researchPrototype": "由 Cortex Binário 出品",
     "installViaPipAria": "通过 pip 本地安装（在新标签页打开）",
     "watchVideoAria": "在 YouTube 观看视频（在新标签页打开）",
     "viewGithubAria": "在 GitHub 查看（在新标签页打开）"
@@ -576,7 +576,7 @@
     "serverError": "处理数据时服务器出错：{{message}}",
     "pastedImageAlt": "粘贴的图片 {{index}}",
     "uploadedImageAlt": "用户上传的图片 {{index}}",
-    "sampleExtractRepos": "从 https://github.com/microsoft 提取热门仓库",
+    "sampleExtractRepos": "从 https://github.com/sidneysimas 提取热门仓库",
     "sampleExtractFromImage": "从此图片中提取数据",
     "sampleExtractGrowth": "从文本中提取增长数据",
     "sampleGenerateDataset": "生成英国王朝数据集",

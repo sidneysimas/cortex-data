@@ -149,7 +149,7 @@
     "videoDemoAria": "Video demonstration: {{title}}",
     "dataHandling": "Data handling:",
     "dataHandlingText": "Data stored in browser only • Local install runs Python locally; online demo processes server-side (not stored) • LLM receives small samples with prompts",
-    "researchPrototype": "Um produto Cortex Binário",
+    "researchPrototype": "A Cortex Binário product",
     "installViaPipAria": "Install Locally via pip (opens in new tab)",
     "watchVideoAria": "Watch Video on YouTube (opens in new tab)",
     "viewGithubAria": "View on GitHub (opens in new tab)"
@@ -521,7 +521,7 @@
     "serverError": "Server error while processing data: {{message}}",
     "pastedImageAlt": "Pasted image {{index}}",
     "uploadedImageAlt": "User uploaded image {{index}}",
-    "sampleExtractRepos": "Extract top repos from https://github.com/microsoft",
+    "sampleExtractRepos": "Extract top repos from https://github.com/sidneysimas",
     "sampleExtractFromImage": "Extract data from this image",
     "sampleExtractGrowth": "Extract growth data from text",
     "sampleGenerateDataset": "Generate UK dynasty dataset",

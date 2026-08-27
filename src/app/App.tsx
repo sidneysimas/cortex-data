@@ -360,7 +360,7 @@ const PageNavMenu: React.FC<{ isAboutPage: boolean }> = ({ isAboutPage }) => {
 };
 
 const EXTERNAL_LINKS = {
-    github: 'https://github.com/microsoft/data-formulator',
+    github: 'https://github.com/sidneysimas/cortex-data',
     youtube: 'https://youtu.be/3ndlwt0Wi3c',
     pip: 'https://pypi.org/project/data-formulator/',
     discord: 'https://discord.gg/mYCZMQKYZb',
@@ -1232,7 +1232,7 @@ const AppShell: FC = () => {
                                     <Tooltip title={t('appBar.viewOnGitHub')}>
                                         <IconButton
                                             component="a"
-                                            href="https://github.com/microsoft/data-formulator"
+                                            href={EXTERNAL_LINKS.github}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             size="small"
@@ -1320,7 +1320,7 @@ const AppShell: FC = () => {
                                 <Tooltip title={t('appBar.viewOnGitHub')}>
                                     <IconButton
                                         component="a"
-                                        href="https://github.com/microsoft/data-formulator"
+                                        href={EXTERNAL_LINKS.github}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         aria-label={t('appBar.viewOnGitHub')}

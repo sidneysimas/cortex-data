@@ -521,7 +521,7 @@
     "serverError": "Erro no servidor ao processar dados: {{message}}",
     "pastedImageAlt": "Imagem colada {{index}}",
     "uploadedImageAlt": "Imagem enviada pelo usuário {{index}}",
-    "sampleExtractRepos": "Extrair principais repositórios de https://github.com/microsoft",
+    "sampleExtractRepos": "Extrair principais repositórios de https://github.com/sidneysimas",
     "sampleExtractFromImage": "Extrair dados desta imagem",
     "sampleExtractGrowth": "Extrair dados de crescimento do texto",
     "sampleGenerateDataset": "Gerar conjunto de dados de dinastias do Reino Unido",

@@ -83,7 +83,7 @@ export const About: FC<{}> = function About({ }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={t('about.viewGithubAria')}
-                href="https://github.com/microsoft/data-formulator"
+                href="https://github.com/sidneysimas/cortex-data"
             >{t('about.github')}</Button>
         </Box>
     );
@@ -227,26 +227,12 @@ export const About: FC<{}> = function About({ }) {
                     backgroundColor: 'rgba(255, 255, 255, 0.89)',
                     alignItems: 'center', justifyContent: 'center' }}
             >
-                <Button size="small" color="inherit" 
-                        sx={{ textTransform: 'none' }} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        aria-label={t('footer.privacyCookiesAria')}
-                        href="https://www.microsoft.com/en-us/privacy/privacystatement">{t('footer.privacyCookies')}</Button>
-                <Divider orientation="vertical" variant="middle" flexItem sx={{ mx: 1 }} aria-hidden="true" />
-                <Button size="small" color="inherit" 
-                        sx={{ textTransform: 'none' }} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        aria-label={t('footer.termsOfUseAria')}
-                        href="https://www.microsoft.com/en-us/legal/intellectualproperty/copyright">{t('footer.termsOfUse')}</Button>
-                <Divider orientation="vertical" variant="middle" flexItem sx={{ mx: 1 }} aria-hidden="true" />
-                <Button size="small" color="inherit" 
-                        sx={{ textTransform: 'none' }} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
+                <Button size="small" color="inherit"
+                        sx={{ textTransform: 'none' }}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         aria-label={t('footer.contactUsAria')}
-                        href="https://github.com/microsoft/data-formulator/issues">{t('footer.contactUs')}</Button>
+                        href="https://github.com/sidneysimas/cortex-data/issues">{t('footer.contactUs')}</Button>
                 <Typography component="span" sx={{ fontSize: textVar.sm, ml: 1 }}>© {new Date().getFullYear()}</Typography>
             </Box>
         </Box>)

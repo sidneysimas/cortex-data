@@ -765,23 +765,13 @@ export const DataFormulatorFC = ({ }) => {
         </Box>
     );
 
-    let footer = <Box sx={{ color: 'text.secondary', display: 'flex', 
+    let footer = <Box sx={{ color: 'text.secondary', display: 'flex',
             backgroundColor: 'rgba(255, 255, 255, 0.89)',
             alignItems: 'center', justifyContent: 'center' }}>
-        <Button size="small" color="inherit" 
-            sx={{ textTransform: 'none'}} 
-            target="_blank" rel="noopener noreferrer" 
-            href="https://www.microsoft.com/en-us/privacy/privacystatement">{t('footer.privacyCookies')}</Button>
-        <Divider orientation="vertical" variant="middle" flexItem sx={{ mx: 1 }} />
-        <Button size="small" color="inherit" 
-            sx={{ textTransform: 'none'}} 
-            target="_blank" rel="noopener noreferrer" 
-            href="https://www.microsoft.com/en-us/legal/intellectualproperty/copyright">{t('footer.termsOfUse')}</Button>
-        <Divider orientation="vertical" variant="middle" flexItem sx={{ mx: 1 }} />
-        <Button size="small" color="inherit" 
-            sx={{ textTransform: 'none'}} 
-            target="_blank" rel="noopener noreferrer" 
-            href="https://github.com/microsoft/data-formulator/issues">{t('footer.contactUs')}</Button>
+        <Button size="small" color="inherit"
+            sx={{ textTransform: 'none'}}
+            target="_blank" rel="noopener noreferrer"
+            href="https://github.com/sidneysimas/cortex-data/issues">{t('footer.contactUs')}</Button>
         <Typography sx={{ display: 'inline', fontSize: textVar.sm, ml: 1 }}> @ {new Date().getFullYear()}</Typography>
     </Box>
 
@@ -883,7 +873,7 @@ export const DataFormulatorFC = ({ }) => {
                                 'This is a demo site! Try the examples below or upload files. To work with large datasets, connect to databases, link local folders, create persisted analysis sessions, use custom models, and manage users, check the ',
                         })}
                         <Link
-                            href="https://github.com/microsoft/data-formulator"
+                            href="https://github.com/sidneysimas/cortex-data"
                             target="_blank"
                             rel="noopener noreferrer"
                             underline="hover"
