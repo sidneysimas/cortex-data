@@ -13,7 +13,7 @@ authors = [
 ]
 readme = "README.md"
 license = "MIT"
-description = "Data Formulator is a research prototype for data visualization powered by AI."
+description = "Cortex Data is a data visualization and analysis tool powered by AI agents, forked from Microsoft's open-source Data Formulator."
 keywords = ["data visualization", "LLM", "AI"]
 classifiers = [
   "Development Status :: 4 - Beta",
@@ -79,9 +79,9 @@ desktop = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/microsoft/data-formulator"
-Repository = "https://github.com/microsoft/data-formulator.git"
-"Bug Tracker" = "https://github.com/microsoft/data-formulator/issues"
+Homepage = "https://github.com/sidneysimas/cortex-data"
+Repository = "https://github.com/sidneysimas/cortex-data.git"
+"Bug Tracker" = "https://github.com/sidneysimas/cortex-data/issues"
 
 [tool.setuptools]
 package-dir = {"" = "py-src"}
@@ -109,11 +109,6 @@ dev-dependencies = [
     "build",
     "pytest",
 ]
-
-[[tool.uv.index]]
-name = "microsoft-package-feed"
-url = "https://packagefeedproxy.microsoft.io/pypi/simple"
-default = true
 
 [dependency-groups]
 dev = [

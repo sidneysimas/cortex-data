@@ -1,9 +1,8 @@
-# Microsoft Open Source Code of Conduct
+# Code of Conduct
 
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
+This project doesn't have a formal adopted code of conduct yet — it's early
+and single-maintainer. In the meantime, the expectation is simple: be
+respectful, assume good faith, and keep discussion focused on the project.
 
-Resources:
-
-- [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/)
-- [Microsoft Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/)
-- Contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with questions or concerns
+If that changes as the project grows, this file will be updated with a
+proper policy and a contact point for reporting concerns.

@@ -6,6 +6,7 @@ This project uses GitHub Issues to track bugs and feature requests. Please searc
 issues before filing new issues to avoid duplicates.  For new issues, file your bug or 
 feature request as a new Issue.
 
-## Microsoft Support Policy  
+## Support Policy
 
-Support for this project is limited to the resources listed above.
+This is an independently maintained fork. Support is limited to the
+resources listed above and best-effort from the maintainer.
