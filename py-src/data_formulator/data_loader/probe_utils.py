@@ -319,8 +319,17 @@ def shape_probe_payload(
     *,
     exact: bool,
     extra_note: str | None = None,
+    sql: str | None = None,
 ) -> dict[str, Any]:
-    """Shape a probe result table into the wire payload (row-cap aware)."""
+    """Shape a probe result table into the wire payload (row-cap aware).
+
+    ``sql`` is the exact query that was executed against the source engine,
+    when there is one (native-SQL probes always have one; DuckDB-backed probes
+    over file sources pass their own). Carried through to the wire payload so
+    the UI can show users what actually ran — the query is otherwise never
+    visible anywhere, which is a real gap for anyone who needs to trust or
+    defend a result (design-docs/probe-sql-transparency).
+    """
     rows = result.to_pylist()
     note_bits: list[str] = []
     if extra_note:
@@ -333,6 +342,7 @@ def shape_probe_payload(
         "row_count": len(rows),
         "exact": exact,
         "compiled_note": "; ".join(note_bits) or None,
+        "sql": sql,
     }
 
 
@@ -365,7 +375,7 @@ def probe_via_native_sql(
     except Exception as exc:
         logger.debug("probe sql failed: %s", sql, exc_info=True)
         return {"error": f"probe failed: {exc}"}
-    return shape_probe_payload(result, out_limit, exact=True)
+    return shape_probe_payload(result, out_limit, exact=True, sql=sql)
 
 
 def run_probe_on_duckdb(
@@ -434,4 +444,4 @@ def run_probe_on_duckdb(
             f"scanned first {scanned} source rows only; "
             "result computed over that sample (approximate)"
         )
-    return shape_probe_payload(result, out_limit, exact=not capped, extra_note=note)
+    return shape_probe_payload(result, out_limit, exact=not capped, extra_note=note, sql=sql)

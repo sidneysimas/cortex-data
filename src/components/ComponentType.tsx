@@ -233,6 +233,11 @@ export interface CodeExecution {
     stdout?: string;
     error?: string;
     resultTable?: InlineTablePreview;
+    /** 'sql' when this is a query the agent ran against a connected database
+     *  (probe_data) rather than Python it executed. Defaults to 'python' —
+     *  see design-docs/probe-sql-transparency for why this exists: without
+     *  it, a live-database answer was a black box with no visible query. */
+    language?: 'python' | 'sql';
 }
 
 export interface PendingTableLoad {

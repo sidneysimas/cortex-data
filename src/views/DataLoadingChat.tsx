@@ -20,6 +20,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import LanguageIcon from '@mui/icons-material/Language';
 import TerminalIcon from '@mui/icons-material/Terminal';
+import StorageIcon from '@mui/icons-material/Storage';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import QuestionAnswerOutlinedIcon from '@mui/icons-material/QuestionAnswerOutlined';
 import SearchIcon from '@mui/icons-material/Search';
 import ImageOutlinedIcon from '@mui/icons-material/ImageOutlined';
@@ -309,6 +311,17 @@ const InlineTablePreviewView: React.FC<{
 const CodeBlockView: React.FC<{ block: CodeExecution }> = ({ block }) => {
     const { t } = useTranslation();
     const [expanded, setExpanded] = useState(false);
+    const [copied, setCopied] = useState(false);
+    const isSql = block.language === 'sql';
+
+    const handleCopy = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        navigator.clipboard.writeText(block.code).then(() => {
+            setCopied(true);
+            setTimeout(() => setCopied(false), 1500);
+        });
+    };
+
     return (
         <Paper variant="outlined" sx={{ my: 1, borderRadius: radius.md, overflow: 'hidden' }}>
             <Box
@@ -320,9 +333,12 @@ const CodeBlockView: React.FC<{ block: CodeExecution }> = ({ block }) => {
                 }}
                 onClick={() => setExpanded(!expanded)}
             >
-                <TerminalIcon sx={{ fontSize: iconVar.sm, color: 'text.secondary', mr: 0.75 }} />
+                {isSql
+                    ? <StorageIcon sx={{ fontSize: iconVar.sm, color: 'text.secondary', mr: 0.75 }} />
+                    : <TerminalIcon sx={{ fontSize: iconVar.sm, color: 'text.secondary', mr: 0.75 }} />
+                }
                 <Typography variant="caption" sx={{ fontSize: textVar.xs, color: 'text.secondary', flex: 1 }}>
-                    {t('dataLoading.ranPythonCode')}
+                    {isSql ? t('dataLoading.ranSqlQuery', 'Consultou o banco de dados (SQL)') : t('dataLoading.ranPythonCode')}
                 </Typography>
                 {block.error
                     ? <ErrorOutlineIcon sx={{ fontSize: iconVar.sm, color: 'text.disabled', mr: 0.5 }} />
@@ -331,8 +347,19 @@ const CodeBlockView: React.FC<{ block: CodeExecution }> = ({ block }) => {
                 {expanded ? <ExpandLessIcon sx={{ fontSize: iconVar.sm }} /> : <ExpandMoreIcon sx={{ fontSize: iconVar.sm }} />}
             </Box>
             <Collapse in={expanded}>
-                <Box sx={{ px: 1.5, py: 1, bgcolor: '#f6f6f6', overflow: 'auto', maxHeight: 200, borderTop: '1px solid', borderColor: 'divider' }}>
-                    <Typography component="pre" sx={{ fontFamily: CODE_FONT, fontSize: textVar.sm, m: 0, whiteSpace: 'pre-wrap', lineHeight: 1.5 }}>
+                <Box sx={{ position: 'relative', px: 1.5, py: 1, bgcolor: '#f6f6f6', overflow: 'auto', maxHeight: 200, borderTop: '1px solid', borderColor: 'divider' }}>
+                    {isSql && (
+                        <Tooltip title={copied ? t('dataLoading.copied', 'Copiado') : t('dataLoading.copySql', 'Copiar SQL')}>
+                            <IconButton
+                                size="small"
+                                onClick={handleCopy}
+                                sx={{ position: 'absolute', top: 4, right: 4, color: 'text.secondary', bgcolor: 'rgba(255,255,255,0.85)', '&:hover': { bgcolor: 'rgba(255,255,255,0.95)' } }}
+                            >
+                                {copied ? <CheckIcon sx={{ fontSize: iconVar.sm }} /> : <ContentCopyIcon sx={{ fontSize: iconVar.sm }} />}
+                            </IconButton>
+                        </Tooltip>
+                    )}
+                    <Typography component="pre" sx={{ fontFamily: CODE_FONT, fontSize: textVar.sm, m: 0, pr: isSql ? 4 : 0, whiteSpace: 'pre-wrap', lineHeight: 1.5 }}>
                         {block.code}
                     </Typography>
                 </Box>
@@ -1569,6 +1596,23 @@ export const DataLoadingChat: React.FC<DataLoadingChatProps> = ({ onTableLoaded 
                             last.stdout = (event as any).stdout || '';
                             last.error = (event as any).error || undefined;
                             if ((event as any).table) last.resultTable = (event as any).table;
+                        }
+                        // probe_data compiles its SQL server-side, so (unlike
+                        // execute_python) there's nothing to show until the
+                        // result comes back — push the whole block here.
+                        if ((event as any).tool === 'probe_data' && (event as any).sql) {
+                            const err = (event as any).error as string | undefined;
+                            codeBlocks.push({
+                                code: (event as any).sql,
+                                language: 'sql',
+                                error: err,
+                                resultTable: err ? undefined : {
+                                    name: 'probe',
+                                    columns: (event as any).columns || [],
+                                    sampleRows: ((event as any).rows || []).slice(0, 10),
+                                    totalRows: (event as any).row_count || 0,
+                                },
+                            });
                         }
                         // Also capture actions from tool_result (e.g. show_user_data_preview)
                         if ((event as any).actions) {
