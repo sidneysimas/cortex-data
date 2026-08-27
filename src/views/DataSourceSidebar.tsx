@@ -48,6 +48,7 @@ import FolderOpenIcon from '@mui/icons-material/FolderOpen';
 import FolderOutlinedIcon from '@mui/icons-material/FolderOutlined';
 import UploadFileIcon from '@mui/icons-material/UploadFile';
 import LightbulbOutlinedIcon from '@mui/icons-material/LightbulbOutlined';
+import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
@@ -355,6 +356,30 @@ export const DataSourceSidebar: React.FC<{
                         borderRadius: 1,
                     }}>
                         <LightbulbOutlinedIcon fontSize="small" />
+                    </IconButton>
+                </Tooltip>
+
+                {/* Chat IA — opens the standalone /chat-ia page in a new tab.
+                    It's a separate route outside this app shell (see App.tsx),
+                    so this is a link, not a panel toggle like the buttons
+                    above. Pinned to the bottom of the rail to read as a
+                    "leave this workspace" action rather than another view. */}
+                <Tooltip title={t('sidebar.chatIA', { defaultValue: 'Chat IA (simplified mode)' })} placement="right">
+                    <IconButton
+                        size="small"
+                        component="a"
+                        href="/chat-ia"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        sx={{
+                            mt: 'auto',
+                            mb: 1,
+                            color: 'text.secondary',
+                            borderRadius: 1,
+                            '&:hover': { bgcolor: 'action.hover', color: 'primary.main' },
+                        }}
+                    >
+                        <ChatBubbleOutlineIcon fontSize="small" />
                     </IconButton>
                 </Tooltip>
             </Box>

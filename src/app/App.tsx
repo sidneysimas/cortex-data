@@ -72,6 +72,7 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import {
     createBrowserRouter,
     Link as RouterLink,
+    Navigate,
     Outlet,
     RouterProvider,
     useLocation,
@@ -1690,8 +1691,13 @@ export const AppFC: FC<AppFCProps> = function AppFC(appProps) {
         {
             // Deliberately outside <AppShell/> — no toolbar, sidebar, or chart
             // canvas around it. See SimpleModeView.tsx for why.
-            path: "/simples",
+            path: "/chat-ia",
             element: <SimpleModeView />,
+        },
+        {
+            // Old URL, kept as a redirect so existing bookmarks/links still work.
+            path: "/simples",
+            element: <Navigate to="/chat-ia" replace />,
         },
         {
             path: "/",
