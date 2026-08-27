@@ -44,7 +44,7 @@ const darkTheme = createTheme({
         primary: { main: '#4f9dff' },
     },
     typography: {
-        fontFamily: ["Arial", "Roboto", "Helvetica Neue", "sans-serif"].join(","),
+        fontFamily: ["Public Sans", "Helvetica Neue", "Arial", "sans-serif"].join(","),
     },
 });
 

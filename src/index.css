@@ -1,7 +1,8 @@
-@import '@fontsource/roboto/300.css';
-@import '@fontsource/roboto/400.css';
-@import '@fontsource/roboto/500.css';
-@import '@fontsource/roboto/700.css';
+@import '@fontsource/public-sans/300.css';
+@import '@fontsource/public-sans/400.css';
+@import '@fontsource/public-sans/500.css';
+@import '@fontsource/public-sans/600.css';
+@import '@fontsource/public-sans/700.css';
 @import '@fontsource/roboto-mono/400.css';
 @import '@fontsource/roboto-mono/500.css';
 
@@ -9,6 +10,7 @@
    they are seeded here so the scale is defined before React mounts. */
 :root {
     --df-scale: 1;
+    --df-font-sans: "Public Sans", "Helvetica Neue", Arial, sans-serif;
     --df-font-mono: "Roboto Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
     --df-text-xxs: 10px;
     --df-text-xs: 11px;

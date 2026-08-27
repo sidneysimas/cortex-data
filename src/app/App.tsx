@@ -1544,9 +1544,9 @@ export const AppFC: FC<AppFCProps> = function AppFC(appProps) {
     let theme = createTheme({
         typography: {
             fontFamily: [
-                "Arial",
-                "Roboto",
+                "Public Sans",
                 "Helvetica Neue",
+                "Arial",
                 "sans-serif"
             ].join(",")
         },
